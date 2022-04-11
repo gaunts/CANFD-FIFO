@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
+    <Import Project="$(NuGetPackageRoot)ixxat.vci4.strongname\4.0.436\build\net40\Ixxat.Vci4.StrongName.targets" Condition="Exists('$(NuGetPackageRoot)ixxat.vci4.strongname\4.0.436\build\net40\Ixxat.Vci4.StrongName.targets')" />
+  </ImportGroup>
+</Project>

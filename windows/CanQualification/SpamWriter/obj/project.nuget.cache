@@ -1,0 +1,21 @@
+{
+  "version": 2,
+  "dgSpecHash": "Ix4VZpmF79FMu2yT/zq5HjL8sspqZErmQ5szgSDQhINnV2ej8Slk0ZoulbTfSXb3i/tvsvnxebf+1vdLVWrsjQ==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Simon\\source\\repos\\canqualification\\windows\\CanQualification\\SpamWriter\\SpamWriter.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Simon\\.nuget\\packages\\ixxat.vci4.strongname\\4.0.436\\ixxat.vci4.strongname.4.0.436.nupkg.sha512"
+  ],
+  "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'Ixxat.Vci4.StrongName 4.0.436' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework 'net6.0'. This package may not be fully compatible with your project.",
+      "libraryId": "Ixxat.Vci4.StrongName",
+      "targetGraphs": [
+        "net6.0"
+      ]
+    }
+  ]
+}
