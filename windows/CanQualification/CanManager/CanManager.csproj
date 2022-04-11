@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Ixxat.Vci4.StrongName" Version="4.0.436" />
+  </ItemGroup>
+
 </Project>
