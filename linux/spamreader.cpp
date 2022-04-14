@@ -39,7 +39,7 @@ int main()
                                 standardBitrate,
                                 extendedBitrate);
 
-    // std::thread t(&logLoop);
+    std::thread t(&logLoop);
     if (!connected)
     {
         std::cout << "Cannot connect" << std::endl;
