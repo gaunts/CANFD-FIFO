@@ -10,15 +10,23 @@ CppCan::CanController controller_;
 uint64_t count = 0;
 std::thread logthread;
 
-// void logLoop()
-// {
-//     while (true)
-//     {
-//         std::this_thread::sleep_for(std::chrono::milliseconds(1));
-//         std::system("clear");
-//         std::cout << count << std::endl;
-//     }
-// }
+void SetCursorPosition(int XPos, int YPos) {
+    printf("\033[%d;%dH",YPos+1,XPos+1);
+}
+
+void logLoop()
+{
+    auto startTime = std::chrono::system_clock::now();
+    while (true)
+    {
+        auto now = std::chrono::system_clock::now();
+        SetCursorPosition(0, 0);
+        std::cout << count << std::endl;
+        double seconds = std::chrono::duration_cast<std::chrono::milliseconds>(now - startTime).count() / 1000.0;
+        std::cout << (double)count / seconds << " / s                          " << std::endl;
+        std::this_thread::sleep_for(std::chrono::milliseconds(100));
+    }
+}
 
 int main()
 {
