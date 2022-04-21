@@ -10,8 +10,6 @@ namespace CanManager
         private static AutoResetEvent _readAutoResetEvent = new AutoResetEvent(false);
         private static ICanMessageWriter _writer;
         private static ICanMessageReader _reader;
-        private static bool _receivedMessage = false;
-        private static bool _pauseSending = false;
 
         public static void Connect(int deviceIndex = 0)
         {
@@ -52,10 +50,6 @@ namespace CanManager
 
         public static bool SendMessage(int track)
         {
-            //if (_reader.FillCount > 0)
-            //    return false;
-            Debug.WriteLine(_reader.FillCount);
-
             IMessageFactory factory = VciServer.Instance().MsgFactory;
             ICanMessage2 message = (ICanMessage2)factory.CreateMsg(typeof(ICanMessage2));
 
@@ -66,6 +60,7 @@ namespace CanManager
             message.ExtendedFrameFormat = false;
             message.DataLength = 8;
             message[0] = BitConverter.GetBytes(track).First();
+            // Filling bytes with know values, just for testing purposes.
             message[1] = 0x11;
             message[2] = 0x22;
             message[3] = 0x33;
@@ -86,13 +81,12 @@ namespace CanManager
             {
                 return WaitForMessageReception();
             }
-            else if (msg.FrameType != CanMsgFrameType.Data || (msg[2] != 0x22 && msg[2] != 0x20))
+            else if (msg.FrameType != CanMsgFrameType.Data || (msg[2] != 0x22 && msg[2] != 0x20)) // 0x20 is used by an other test program. Please ignore.
             {
                 Debug.WriteLine(msg.ToString());
-                if (msg.FrameType == CanMsgFrameType.Status && (CanCtrlStatus)msg[0] == 0)
-                {
-                    _pauseSending = true;
-                }
+                Debug.WriteLine('\t' + "Reader.FillCount = " + _reader.FillCount);
+                Debug.WriteLine('\t' + "Reader.Capacity = " + _reader.Capacity);
+                Debug.WriteLine('\t' + "Writer.FreeCount = " + _writer.FreeCount);
                 return WaitForMessageReception();
             }
             else

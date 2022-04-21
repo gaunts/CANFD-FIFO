@@ -51,7 +51,7 @@ async Task ReceiveLoop()
 
 async Task SendLoop()
 {
-    int fifosize = 3;
+    int fifosize = 1;
     await Task.Run(() =>
     {
         while (true)
@@ -67,7 +67,6 @@ async Task SendLoop()
                 {
                     i--;
                 }
-                //Debug.WriteLine(track);
             }
 
             int lastTrack = track == 0 ? 255 : track - 1;

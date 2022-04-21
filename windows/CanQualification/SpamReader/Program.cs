@@ -1,5 +1,4 @@
-﻿// See https://aka.ms/new-console-template for more information
-using System.Diagnostics;
+﻿using System.Diagnostics;
 
 int track = 0;
 AutoResetEvent _receptionEvent = new AutoResetEvent(false);
@@ -8,7 +7,6 @@ Stopwatch sw = new Stopwatch();
 CanManager.CanManager.Connect(1);
 
 Console.CursorVisible = false;
-//_ = SendLoop();
 sw.Start();
 
 _ = DisplayLoop();
@@ -40,16 +38,3 @@ async Task DisplayLoop()
         }
     });
 }
-
-//async Task SendLoop()
-//{
-//    while (true)
-//    {
-//        await Task.Run(() =>
-//        {
-//            CanManager.CanManager.SendMessage();
-//            CanManager.CanManager.WaitForMessageReception();
-//            sentMessages++;
-//        });
-//    }
-//}
