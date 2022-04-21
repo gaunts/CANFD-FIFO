@@ -1,5 +1,5 @@
 CC = g++
-LIBS  = -lcppcanfd -leci116DriverLinux-usb-1.0 -lpthread
+LIBS  = -leci116DriverLinux-usb-1.0 -lpthread
 TARGET = spamreader
 
 all: $(TARGET)
