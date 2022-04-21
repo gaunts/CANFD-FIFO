@@ -11,4 +11,8 @@
     <PackageReference Include="Ixxat.Vci4.StrongName" Version="4.0.436" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\CanManager\CanManager.csproj" />
+  </ItemGroup>
+
 </Project>
