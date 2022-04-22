@@ -43,8 +43,8 @@ namespace CanManager
                 _reader = _fdChannel.GetMessageReader();
                 _reader.AssignEvent(_readAutoResetEvent);
 
-                while (_reader.FillCount > 0)
-                    _reader.ReadMessage(out ICanMessage2 _);
+                //while (_reader.FillCount > 0)
+                //    _reader.ReadMessage(out ICanMessage2 _);
             }
         }
 

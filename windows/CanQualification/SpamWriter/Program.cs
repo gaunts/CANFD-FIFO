@@ -3,7 +3,7 @@ using Ixxat.Vci4.Bal.Can;
 using System.Diagnostics;
 
 int track = 0;
-int lastReceivedTrack = 0;
+int lastReceivedTrack = -1;
 List<int> receivedTracks = new List<int>();
 int received = 0;
 AutoResetEvent receiveAutoReset = new AutoResetEvent(false);
@@ -51,8 +51,8 @@ async Task ReceiveLoop()
 
 async Task SendLoop()
 {
-    int fifosize = 1;
-    await Task.Run(() =>
+    int fifosize = 3;
+    await Task.Run(async () =>
     {
         while (true)
         {
@@ -74,6 +74,7 @@ async Task SendLoop()
             {
                 receiveAutoReset.WaitOne();
             }
+            //await Task.Delay(1000);
             sentMessages += fifosize;
             received -= fifosize;
         }
