@@ -11,7 +11,7 @@ class CanHelper
     ECI_CTRL_HDL _controllerHandle = ECI_INVALID_HANDLE;
 
  public:
-    inline bool ReadMessage(ECI_CTRL_MESSAGE *message)
+    bool ReadMessage(ECI_CTRL_MESSAGE *message)
     {
         DWORD receiveCount = 1;
         message->u.sCanMessage.dwVer = ECI_STRUCT_VERSION_V1;
@@ -30,7 +30,7 @@ class CanHelper
         return result == ECI_OK;
     }
 
-    inline bool Connect()
+    bool Connect()
     {
         ECI_HW_PARA astcHwPara  = {0};
         ECI_HW_INFO stcHwInfo   = {0};
