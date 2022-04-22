@@ -31,7 +31,8 @@ void logLoop()
 
 int main()
 {
-    if (!canHelper.Connect());
+    system("clear");
+    if (!canHelper.Connect())
     {
         std::cout << "Cannot connect" << std::endl;
         return 0;
@@ -39,13 +40,26 @@ int main()
 
     std::thread t(&logLoop);
     ECI_CTRL_MESSAGE message = {0};
-    int count = 0;
     while (true)
     {
         if (!canHelper.ReadMessage(&message))
             continue;
-
         if (message.u.sCanMessage.u.V1.uMsgInfo.Bits.dlc == 8 && message.u.sCanMessage.u.V1.abData[2] == 0x22)
+        {
+            count++;
+            // std::cout << "Sending" << std::endl;
+            ECI_CTRL_MESSAGE msg = {0};
+            msg.u.sCanMessage.dwVer = ECI_STRUCT_VERSION_V1;
+            msg.u.sCanMessage.u.V1.dwMsgId = 1;
+            msg.u.sCanMessage.u.V1.uMsgInfo.Bits.dlc = 8;
+            msg.u.sCanMessage.u.V1.uMsgInfo.Bits.type = ECI_CAN_MSGTYPE_DATA;
+            msg.u.sCanMessage.u.V1.uMsgInfo.Bits.ext = false;
+            msg.u.sCanMessage.u.V1.uMsgInfo.Bits.srr = false;
+            msg.u.sCanMessage.u.V1.uMsgInfo.Bits.edl = 0;
+            msg.u.sCanMessage.u.V1.abData[0] = message.u.sCanMessage.u.V1.abData[0];
+            msg.u.sCanMessage.u.V1.abData[2] = message.u.sCanMessage.u.V1.abData[2];
             canHelper.SendMessage(&message);
+            std::this_thread::sleep_for(std::chrono::milliseconds(50));
+        }
     }
 }

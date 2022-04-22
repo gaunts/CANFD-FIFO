@@ -18,8 +18,9 @@ class CanHelper
 
         HRESULT result = ECI116_CtrlReceive(this->_controllerHandle, &receiveCount, message, 10);
         if (receiveCount == 0 || result != ECI_OK)
+        {
             return false;
-
+        }
         return true;
     }
 
@@ -40,7 +41,9 @@ class CanHelper
             result = ECI116_GetInfo(0, &stcHwInfo);
 
         if (result != ECI_OK)
+        {
             return false;
+        }
 
         ECI_CTRL_CONFIG stcCtrlConfig = {0};
         ECI_CANBTP stcBtpSdr     = {ECI_CAN_BTMODE_NATIVE, 2, 63, 16, 16, 0};
@@ -55,9 +58,10 @@ class CanHelper
 
         HRESULT hResult = ECI116_CtrlOpen(&_controllerHandle, 0, 0, &stcCtrlConfig);
         if (hResult != ECI_OK)
+        {
             return false;
+        }
         hResult = ECI116_CtrlStart(_controllerHandle);
-
         return hResult == ECI_OK;
     }
 };
